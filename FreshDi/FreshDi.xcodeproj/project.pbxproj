@@ -109,14 +109,54 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6713AC961D813D1500FCE41F /* FreshReservation */ = {
+			isa = PBXGroup;
+			children = (
+				6713AC971D813D1500FCE41F /* Controllers */,
+				6713AC981D813D1500FCE41F /* Model */,
+				6713AC991D813D1500FCE41F /* Others */,
+				6713AC9A1D813D1500FCE41F /* View */,
+			);
+			path = FreshReservation;
+			sourceTree = "<group>";
+		};
+		6713AC971D813D1500FCE41F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6713AC981D813D1500FCE41F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6713AC991D813D1500FCE41F /* Others */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		6713AC9A1D813D1500FCE41F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		67709E391D811346003BC699 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				67709E4E1D8113A1003BC699 /* Common */,
 				67709E3A1D811346003BC699 /* Home */,
 				67709E3F1D811346003BC699 /* LightningSupermarket */,
-				67709E441D811346003BC699 /* Mine */,
+				6713AC961D813D1500FCE41F /* FreshReservation */,
 				67709E491D811346003BC699 /* ShoppingCart */,
+				67709E441D811346003BC699 /* Mine */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
