@@ -1,0 +1,26 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'FreshDi' do
+  # Uncomment this line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for FreshDi
+
+  target 'FreshDiTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'FreshDiUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+pod 'SDWebImage'
+pod 'AFNetworking'
+pod 'MBProgressHUD'
+pod 'Masonry'
+pod 'FMDB'
+
+end
