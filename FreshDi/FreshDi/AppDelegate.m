@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "FDMainTabBarController.h"
 
 @interface AppDelegate ()
 
@@ -16,9 +17,32 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    //设置AppStyle
+    UITabBar *item = [UITabBar appearance];
+    item.tintColor = [UIColor darkGrayColor];
+    
+    UINavigationBar *navgationBar = [UINavigationBar appearance];
+    navgationBar.translucent = NO;
+    
+    //设置根window
+    [self setupRootWindowAndVc];
+
     return YES;
 }
+
+
+- (void)setupRootWindowAndVc {
+    
+    //window
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [self.window makeKeyAndVisible];
+    
+    //rootVc
+    self.window.rootViewController = [FDMainTabBarController new];
+    
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
