@@ -23,8 +23,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    //默认地址的确认
     Address *defaultAdress = [FDUserAddressInfo sharedInstance].defaultAddress;
     if (defaultAdress) {
+        
+        //默认地址存在的话，显示地址信息栏
         AdressTitleView *titleView = [[AdressTitleView alloc]init];
         titleView.frame = CGRectMake(0, 0, [titleView adressViewWidth], 30);
         self.navigationItem.titleView = titleView;
@@ -40,6 +43,12 @@
     [self setNavigationBar];
 
 }
+
+//- (void)viewWillDisappear:(BOOL)animated {
+//    
+//    
+//    self.tabBarController.hidesBottomBarWhenPushed = YES;
+//}
 
 - (void)setNavigationBar {
     

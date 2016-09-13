@@ -17,6 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor orangeColor];
+    
+    NSLog(@"---mine navi:%@", self.navigationController);
+    
 }
 
 - (void)didReceiveMemoryWarning {

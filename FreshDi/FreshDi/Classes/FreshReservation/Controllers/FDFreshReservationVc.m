@@ -7,6 +7,7 @@
 //
 
 #import "FDFreshReservationVc.h"
+#import "FDARVc.h"
 
 @interface FDFreshReservationVc ()
 
@@ -17,7 +18,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor greenColor];
+    //jump to AR
+    [self addButtonToAR];
+    
+    
+}
+
+- (void)addButtonToAR {
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.center.x - 50, self.view.center.y - 50, 100, 60)];
+    
+    [btn setTitle:@"To Feel The AR" forState:UIControlStateNormal];
+    
+    [btn addTarget:self action:@selector(jumpToARVc:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:btn];
+    
+}
+
+- (void)jumpToARVc:(UIButton *)sender {
+    
+    [self.navigationController presentViewController:[FDARVc new] animated:YES completion:^{
+       
+        NSLog(@"perfect");
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

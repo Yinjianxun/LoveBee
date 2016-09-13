@@ -7,11 +7,18 @@
 //
 
 #import "FDMainTabBarController.h"
+//首页
 #import "FDHomeVc.h"
+//闪电超市
 #import "FDLightningSupermarketVc.h"
+//新鲜预订
 #import "FDFreshReservationVc.h"
+//购物车
 #import "FDShoppingCartVc.h"
+#import "UserShopCarTool.h"
+//我的
 #import "FDMineVc.h"
+//navi基类
 #import "FDBaseNaviController.h"
 //tabBar动画
 #import "PJXAnimatedTabBarController.h"
@@ -28,9 +35,12 @@
 
 @implementation FDMainTabBarController
 
-
-
 - (void)viewDidLoad {
+    
+    //添加通知 购物车++ 用
+    [self addNotification];
+    
+//    [super viewDidLoad];
     
     //设置 子控制器
     //首页
@@ -96,19 +106,42 @@
     return currentRootNavi;
 }
 
+//- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+//    NSArray *childVcArr = tabBarController.childViewControllers;
+//    
+//    NSUInteger index = [childVcArr indexOfObject:viewController];
+//    
+//    //购物车时不需要 tabbar动画
+//    if (index == 3) {
+//        return NO;
+//    }
+//    
+//    return YES;
+//}
 
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-    NSArray *childVcArr = tabBarController.childViewControllers;
+- (void)addNotification{
     
-    NSUInteger index = [childVcArr indexOfObject:viewController];
-    
-    //购物车时不需要 tabbar动画
-    if (index == 3) {
-        return NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shopCarBuyNumberChanged) name:LFBShopCarBuyNumberDidChangeNotification object:nil];
+}
+- (void)shopCarBuyNumberChanged {
+    //购物车Vc
+    UIViewController *controller = self.childViewControllers[3];
+    UITabBarItem *item = controller.tabBarItem;
+    NSInteger goodsNumer = [[UserShopCarTool sharedInstance] getShopCarGoodsNumber];
+    if (goodsNumer == 0) {
+        item.badgeValue = nil;
+        return;
     }
     
-    return YES;
+    //购物车 的角标增加
+    item.badgeValue = [NSString stringWithFormat:@"%ld",goodsNumer];
+    
 }
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

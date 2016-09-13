@@ -1,9 +1,9 @@
 //
 //  MyAdressViewController.m
-//  LoveFreshBeen_OC
+//  FreshDi
 //
-//  Created by 江科 on 16/3/23.
-//  Copyright © 2016年 江科. All rights reserved.
+//  Created by Yin jianxun on 16/9/12.
+//  Copyright © 2016年 YinJianxun. All rights reserved.
 //
 
 #import "MyAdressViewController.h"
@@ -21,13 +21,25 @@
 
 @implementation MyAdressViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
+    //[self.view removeFromSuperview];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self buildNavigationItem];
+    //地址列表
     [self buildAddressTableView];
+    //无地址
     [self builNullAddressView];
+    
+    //加载 地址信息
     [self loadAddressData];
+    //按钮样式
     [self buildBottonView];
 }
 
@@ -52,10 +64,10 @@
 }
 - (void)loadAddressData {
     __weak typeof(self) wSelf = self;
-//    [AddressData loadAdressData:^(id data, NSError *error) {
-//        wSelf.addreses = data;
-//        [wSelf.tableView reloadData];
-//    }];
+    [FDAddressData loadAdressData:^(id data, NSError *error) {
+        wSelf.addreses = data;
+        [wSelf.tableView reloadData];
+    }];
 }
 - (void)builNullAddressView {
 
@@ -67,6 +79,7 @@
     [self.view addSubview:bottonView];
     [bottonView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.bottom.equalTo(self.view);
+        //make.bottom.equalTo(self.view).offset(-60);
         make.height.mas_equalTo(60);
     }];
     

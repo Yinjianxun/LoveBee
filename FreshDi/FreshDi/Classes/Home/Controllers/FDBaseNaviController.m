@@ -11,7 +11,7 @@
 @interface FDBaseNaviController ()
 
 //自定义leftBackBtn
-//@property (strong, nonatomic) UIButton *leftBackBtn;
+@property (strong, nonatomic) UIButton *leftBackBtn;
 
 @end
 
@@ -20,23 +20,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //自定义返回按钮 懒加载
+    self.leftBackBtn = ({
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setImage:[UIImage imageNamed:@"v2_goback"] forState:UIControlStateNormal];
+        btn.titleLabel.hidden = YES;
+        [btn addTarget:self action:@selector(backBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        btn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+        btn.frame = CGRectMake(0, 0, 44, 40);
+        btn;
+    });
 }
 
-//懒加载 leftBtn
-- (UIButton *)leftBackBtn {
-    
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setImage:[UIImage imageNamed:@"v2_goback"] forState:UIControlStateNormal];
-    btn.titleLabel.hidden = YES;
-    [btn addTarget:self action:@selector(backBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    //水平居左
-    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    //内边距
-    btn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
-    btn.frame = CGRectMake(0, 0, 44, 40);
-    
-    return btn;
-}
+////懒加载 leftBtn
+//- (UIButton *)leftBackBtn {
+//    
+//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [btn setImage:[UIImage imageNamed:@"v2_goback"] forState:UIControlStateNormal];
+//    btn.titleLabel.hidden = YES;
+//    [btn addTarget:self action:@selector(backBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+//    //水平居左
+//    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    //内边距
+//    btn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
+//    btn.frame = CGRectMake(0, 0, 44, 40);
+//    
+//    return btn;
+//}
 
 - (void)backBtnClicked:(UIButton *)btn {
     [self popViewControllerAnimated:YES];
@@ -53,8 +64,10 @@
         
         viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftBackBtn];
         //跳转同时 隐藏底部bar栏
-        viewController.hidesBottomBarWhenPushed = YES;
+        //viewController.hidesBottomBarWhenPushed = YES;
+        //[viewController.tabBarItem setAccessibilityElementsHidden:YES];
     }
+    //push Vc
     [super pushViewController:viewController animated:YES];
 }
 

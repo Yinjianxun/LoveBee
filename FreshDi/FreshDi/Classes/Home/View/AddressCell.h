@@ -1,9 +1,9 @@
 //
 //  AdressCell.h
-//  LoveFreshBeen_OC
+//  FreshDi
 //
-//  Created by 江科 on 16/3/23.
-//  Copyright © 2016年 江科. All rights reserved.
+//  Created by Yin jianxun on 16/9/11.
+//  Copyright © 2016年 YinJianxun. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

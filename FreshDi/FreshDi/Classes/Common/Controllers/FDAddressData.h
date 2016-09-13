@@ -2,22 +2,20 @@
 //  FDAddressData.h
 //  FreshDi
 //
-//  Created by Yin jianxun on 16/9/9.
+//  Created by Yin jianxun on 16/9/12.
 //  Copyright © 2016年 YinJianxun. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 @class Address;
-
 @interface FDAddressData : NSObject
+@property (nonatomic) NSInteger code;
+@property (nonatomic,copy) NSString *msg;
+@property (nonatomic,copy) NSArray<Address *> *data;
 
-//Address模型数据数组
-@property (strong, nonatomic) NSArray <Address *>*addressArr;
-
++ (void)loadAdressData:(CompleteBlock)complete ;
 @end
 
-
-//address类
 @interface Address : NSObject
 
 @property (nonatomic,copy) NSString *accept_name;
@@ -28,7 +26,5 @@
 @property (nonatomic,copy) NSString *lng;
 @property (nonatomic,copy) NSString *lat;
 @property (nonatomic,copy) NSString *gender;
-
-+ (instancetype)addressWithDict:(NSDictionary *)dict;
 
 @end

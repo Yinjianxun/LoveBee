@@ -8,14 +8,12 @@
 
 #import "FDUserAddressInfo.h"
 
-@implementation FDUserAddressInfo
+@interface FDUserAddressInfo()
 
-- (void)setAllAdress:(NSArray *)allAdress {
-    
-    
-    
-    
-}
+
+@end
+
+@implementation FDUserAddressInfo
 
 + (instancetype)sharedInstance {
     
@@ -23,22 +21,12 @@
     static FDUserAddressInfo *userInfo;
     dispatch_once(&onceToken, ^{
         userInfo = [[FDUserAddressInfo alloc]init];
-        
-        FDAddressData *userData = [[FDAddressData alloc] init];
-        
-        if (userData.addressArr.count > 0) {
-            
-            userInfo.allAdress = userData.addressArr.copy;
-            
-            userInfo.defaultAddress = userData.addressArr[0];
-        }
-        
-//        [FDAddressData loadAdressData:^(NSArray *allAdress, NSError *error) {
-//            if (allAdress != nil) {
-//                userInfo.allAdress = [allAdress mutableCopy];
-//                userInfo.defaultAddress = allAdress[0];
-//            }
-//        }];
+        [FDAddressData loadAdressData:^(NSArray *allAdress, NSError *error) {
+            if (allAdress != nil) {
+                userInfo.allAdress = [allAdress mutableCopy];
+                userInfo.defaultAddress = allAdress[0];
+            }
+        }];
     });
     return userInfo;
 }
